@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlCustomerMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlCustomer">
+    <id column="customer_id" jdbcType="VARCHAR" property="customer_id" />
+    <result column="customer_name" jdbcType="VARCHAR" property="customer_name" />
+    <result column="customer_sex" jdbcType="INTEGER" property="customer_sex" />
+    <result column="user_id" jdbcType="VARCHAR" property="user_id" />
+    <result column="customer_pwd" jdbcType="VARCHAR" property="customer_pwd" />
+    <result column="customer_phone" jdbcType="VARCHAR" property="customer_phone" />
+    <result column="customer_birth" jdbcType="TIMESTAMP" property="customer_birth" />
+    <result column="customer_address" jdbcType="VARCHAR" property="customer_address" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_customer
+    where customer_id = #{customer_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlCustomer">
+    insert into wl_customer (customer_id, customer_name, customer_sex, 
+      user_id, customer_pwd, customer_phone, 
+      customer_birth, customer_address, note
+      )
+    values (#{customer_id,jdbcType=VARCHAR}, #{customer_name,jdbcType=VARCHAR}, #{customer_sex,jdbcType=INTEGER}, 
+      #{user_id,jdbcType=VARCHAR}, #{customer_pwd,jdbcType=VARCHAR}, #{customer_phone,jdbcType=VARCHAR}, 
+      #{customer_birth,jdbcType=TIMESTAMP}, #{customer_address,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlCustomer">
+    update wl_customer
+    set customer_name = #{customer_name,jdbcType=VARCHAR},
+      customer_sex = #{customer_sex,jdbcType=INTEGER},
+      user_id = #{user_id,jdbcType=VARCHAR},
+      customer_pwd = #{customer_pwd,jdbcType=VARCHAR},
+      customer_phone = #{customer_phone,jdbcType=VARCHAR},
+      customer_birth = #{customer_birth,jdbcType=TIMESTAMP},
+      customer_address = #{customer_address,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where customer_id = #{customer_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select customer_id, customer_name, customer_sex, user_id, customer_pwd, customer_phone, 
+    customer_birth, customer_address, note
+    from wl_customer
+    where customer_id = #{customer_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select customer_id, customer_name, customer_sex, user_id, customer_pwd, customer_phone, 
+    customer_birth, customer_address, note
+    from wl_customer
+  </select>
+</mapper>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlOrderMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlOrder">
+    <id column="order_id" jdbcType="VARCHAR" property="order_id" />
+    <result column="order_type" jdbcType="INTEGER" property="order_type" />
+    <result column="order_num" jdbcType="VARCHAR" property="order_num" />
+    <result column="cargo_name" jdbcType="VARCHAR" property="cargo_name" />
+    <result column="cargo_weight" jdbcType="INTEGER" property="cargo_weight" />
+    <result column="mail_people" jdbcType="VARCHAR" property="mail_people" />
+    <result column="mail_address" jdbcType="VARCHAR" property="mail_address" />
+    <result column="consignee_address" jdbcType="VARCHAR" property="consignee_address" />
+    <result column="order_start" jdbcType="INTEGER" property="order_start" />
+    <result column="mail_phone" jdbcType="VARCHAR" property="mail_phone" />
+    <result column="consignee" jdbcType="VARCHAR" property="consignee" />
+    <result column="consignee_phone" jdbcType="VARCHAR" property="consignee_phone" />
+    <result column="starting_city" jdbcType="VARCHAR" property="starting_city" />
+    <result column="middle_city" jdbcType="VARCHAR" property="middle_city" />
+    <result column="end_city" jdbcType="VARCHAR" property="end_city" />
+    <result column="shipping_price" jdbcType="DECIMAL" property="shipping_price" />
+    <result column="delivery_price" jdbcType="DECIMAL" property="delivery_price" />
+    <result column="count_price" jdbcType="VARCHAR" property="count_price" />
+    <result column="car" jdbcType="VARCHAR" property="car" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_order
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlOrder">
+    insert into wl_order (order_id, order_type, order_num, 
+      cargo_name, cargo_weight, mail_people, 
+      mail_address, consignee_address, order_start, 
+      mail_phone, consignee, consignee_phone, 
+      starting_city, middle_city, end_city, 
+      shipping_price, delivery_price, count_price, 
+      car, note)
+    values (#{order_id,jdbcType=VARCHAR}, #{order_type,jdbcType=INTEGER}, #{order_num,jdbcType=VARCHAR}, 
+      #{cargo_name,jdbcType=VARCHAR}, #{cargo_weight,jdbcType=INTEGER}, #{mail_people,jdbcType=VARCHAR}, 
+      #{mail_address,jdbcType=VARCHAR}, #{consignee_address,jdbcType=VARCHAR}, #{order_start,jdbcType=INTEGER}, 
+      #{mail_phone,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{consignee_phone,jdbcType=VARCHAR}, 
+      #{starting_city,jdbcType=VARCHAR}, #{middle_city,jdbcType=VARCHAR}, #{end_city,jdbcType=VARCHAR}, 
+      #{shipping_price,jdbcType=DECIMAL}, #{delivery_price,jdbcType=DECIMAL}, #{count_price,jdbcType=VARCHAR}, 
+      #{car,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlOrder">
+    update wl_order
+    set order_type = #{order_type,jdbcType=INTEGER},
+      order_num = #{order_num,jdbcType=VARCHAR},
+      cargo_name = #{cargo_name,jdbcType=VARCHAR},
+      cargo_weight = #{cargo_weight,jdbcType=INTEGER},
+      mail_people = #{mail_people,jdbcType=VARCHAR},
+      mail_address = #{mail_address,jdbcType=VARCHAR},
+      consignee_address = #{consignee_address,jdbcType=VARCHAR},
+      order_start = #{order_start,jdbcType=INTEGER},
+      mail_phone = #{mail_phone,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consignee_phone = #{consignee_phone,jdbcType=VARCHAR},
+      starting_city = #{starting_city,jdbcType=VARCHAR},
+      middle_city = #{middle_city,jdbcType=VARCHAR},
+      end_city = #{end_city,jdbcType=VARCHAR},
+      shipping_price = #{shipping_price,jdbcType=DECIMAL},
+      delivery_price = #{delivery_price,jdbcType=DECIMAL},
+      count_price = #{count_price,jdbcType=VARCHAR},
+      car = #{car,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select order_id, order_type, order_num, cargo_name, cargo_weight, mail_people, mail_address, 
+    consignee_address, order_start, mail_phone, consignee, consignee_phone, starting_city, 
+    middle_city, end_city, shipping_price, delivery_price, count_price, car, note
+    from wl_order
+    where order_id = #{order_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select order_id, order_type, order_num, cargo_name, cargo_weight, mail_people, mail_address, 
+    consignee_address, order_start, mail_phone, consignee, consignee_phone, starting_city, 
+    middle_city, end_city, shipping_price, delivery_price, count_price, car, note
+    from wl_order
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlUserMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlUser">
+    <id column="user_id" jdbcType="VARCHAR" property="user_id" />
+    <result column="user_name" jdbcType="VARCHAR" property="user_name" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_user
+    where user_id = #{user_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlUser">
+    insert into wl_user (user_id, user_name, note
+      )
+    values (#{user_id,jdbcType=VARCHAR}, #{user_name,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlUser">
+    update wl_user
+    set user_name = #{user_name,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR}
+    where user_id = #{user_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select user_id, user_name, note
+    from wl_user
+    where user_id = #{user_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select user_id, user_name, note
+    from wl_user
+  </select>
+</mapper>
