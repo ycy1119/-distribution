@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlRouteMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlRoute">
+    <id column="route_num" jdbcType="VARCHAR" property="route_num" />
+    <result column="route_name" jdbcType="VARCHAR" property="route_name" />
+    <result column="startint_province" jdbcType="VARCHAR" property="startint_province" />
+    <result column="starting_cnum" jdbcType="VARCHAR" property="starting_cnum" />
+    <result column="middle_pnum" jdbcType="VARCHAR" property="middle_pnum" />
+    <result column="middle_cnum" jdbcType="VARCHAR" property="middle_cnum" />
+    <result column="end_pnum" jdbcType="VARCHAR" property="end_pnum" />
+    <result column="end_cnum" jdbcType="VARCHAR" property="end_cnum" />
+    <result column="transport_price" jdbcType="DECIMAL" property="transport_price" />
+    <result column="note" jdbcType="VARCHAR" property="note" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_route
+    where route_num = #{route_num,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlRoute">
+    insert into wl_route (route_num, route_name, startint_province, 
+      starting_cnum, middle_pnum, middle_cnum, 
+      end_pnum, end_cnum, transport_price, 
+      note)
+    values (#{route_num,jdbcType=VARCHAR}, #{route_name,jdbcType=VARCHAR}, #{startint_province,jdbcType=VARCHAR}, 
+      #{starting_cnum,jdbcType=VARCHAR}, #{middle_pnum,jdbcType=VARCHAR}, #{middle_cnum,jdbcType=VARCHAR}, 
+      #{end_pnum,jdbcType=VARCHAR}, #{end_cnum,jdbcType=VARCHAR}, #{transport_price,jdbcType=DECIMAL}, 
+      #{note,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlRoute">
+    update wl_route
+    set route_name = #{route_name,jdbcType=VARCHAR},
+      startint_province = #{startint_province,jdbcType=VARCHAR},
+      starting_cnum = #{starting_cnum,jdbcType=VARCHAR},
+      middle_pnum = #{middle_pnum,jdbcType=VARCHAR},
+      middle_cnum = #{middle_cnum,jdbcType=VARCHAR},
+      end_pnum = #{end_pnum,jdbcType=VARCHAR},
+      end_cnum = #{end_cnum,jdbcType=VARCHAR},
+      transport_price = #{transport_price,jdbcType=DECIMAL},
+      note = #{note,jdbcType=VARCHAR}
+    where route_num = #{route_num,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select route_num, route_name, startint_province, starting_cnum, middle_pnum, middle_cnum, 
+    end_pnum, end_cnum, transport_price, note
+    from wl_route
+    where route_num = #{route_num,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select route_num, route_name, startint_province, starting_cnum, middle_pnum, middle_cnum, 
+    end_pnum, end_cnum, transport_price, note
+    from wl_route
+  </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlProvinceMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlProvince">
+    <id column="province_id" jdbcType="VARCHAR" property="province_id" />
+    <result column="province_name" jdbcType="VARCHAR" property="province_name" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_province
+    where province_id = #{province_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlProvince">
+    insert into wl_province (province_id, province_name)
+    values (#{province_id,jdbcType=VARCHAR}, #{province_name,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlProvince">
+    update wl_province
+    set province_name = #{province_name,jdbcType=VARCHAR}
+    where province_id = #{province_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select province_id, province_name
+    from wl_province
+    where province_id = #{province_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select province_id, province_name
+    from wl_province
+  </select>
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="test.dao.WlCregionMapper">
+  <resultMap id="BaseResultMap" type="test.entity.WlCregion">
+    <id column="region_id" jdbcType="VARCHAR" property="region_id" />
+    <result column="region_name" jdbcType="VARCHAR" property="region_name" />
+    <result column="city_id" jdbcType="VARCHAR" property="city_id" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from wl_cregion
+    where region_id = #{region_id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="test.entity.WlCregion">
+    insert into wl_cregion (region_id, region_name, city_id
+      )
+    values (#{region_id,jdbcType=VARCHAR}, #{region_name,jdbcType=VARCHAR}, #{city_id,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="test.entity.WlCregion">
+    update wl_cregion
+    set region_name = #{region_name,jdbcType=VARCHAR},
+      city_id = #{city_id,jdbcType=VARCHAR}
+    where region_id = #{region_id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select region_id, region_name, city_id
+    from wl_cregion
+    where region_id = #{region_id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select region_id, region_name, city_id
+    from wl_cregion
+  </select>
+</mapper>
